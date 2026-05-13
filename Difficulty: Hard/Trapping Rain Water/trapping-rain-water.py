@@ -1,0 +1,30 @@
+class Solution:
+    def maxWater(self, arr):
+        # code here
+        total_water = 0
+        
+        # store current max height left & right builfing
+        left_max = right_max = 0
+        
+        left, right = 0, len(arr)-1
+        
+        while left <= right:
+            
+            if arr[left] <= arr[right]:
+                
+                if arr[left] >= left_max:
+                    left_max = arr[left]
+                else:
+                    total_water += left_max - arr[left]
+                    
+                left += 1
+            
+            else:
+                if arr[right] >= right_max:
+                    right_max = arr[right]
+                else:
+                    total_water += right_max - arr[right]
+                    
+                right -= 1
+        
+        return total_water
